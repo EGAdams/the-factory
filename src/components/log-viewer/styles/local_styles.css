@@ -1,0 +1,24 @@
+/*
+ * local styles
+ */
+.screen-area {
+    background: black;
+    color: white;
+    border: solid 0.1px;
+    height: 400px;
+    overflow: auto;
+    z-index: 10;
+    text-align: left;
+    padding: 3px; }
+
+.log-object-container {
+    column-gap: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.1px;
+    border: solid 0.0px;
+    margin-bottom: 3px; }
+
+li { list-style: none; }
