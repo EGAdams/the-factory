@@ -18,8 +18,7 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     // return an array containing the names of the attributes you want to observe.  Not sure why this is here yet.
     static observedAttributes () {}
 
-    constructor( private $el: HTMLElement, private $host: Element ) { 
-        super(); }
+    constructor( private $el: HTMLElement, private $host: Element ) { super( { new_id: "", data_source_location: "" }); }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.

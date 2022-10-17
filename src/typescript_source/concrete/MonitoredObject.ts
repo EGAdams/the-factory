@@ -1,9 +1,9 @@
-import FetchRunner from "./FetchRunner.js";
+import FetchRunner from "./FetchRunner";
 import ILogObject       from "../abstract/ILogObject";
 import LogObjectFactory from "./LogObjectFactory";
 import Model            from "./Model";
 import MonitorLed       from "./MonitorLed";
-import SourceData       from "./SourceData.js";
+import SourceData       from "./SourceData";
 /** @class  MonitoredObject */
 export default class MonitoredObject {
     object_view_id:     string;
@@ -12,8 +12,11 @@ export default class MonitoredObject {
     logObjectFactory:   LogObjectFactory;
     monitorLed:         MonitorLed;
     constructor( config: { new_id: string, data_source_location: string; } ) {
+        if ( config.new_id.length === 0 ) { config.new_id = Math.floor( Math.random() * 1000 + 1000 ).toString(); }
         this.object_view_id    = `${ this.constructor.name }_${ config.new_id }`;
         this.logObjects        = [];
+        if ( config.data_source_location.length === 0 && document.querySelector( '.data-source-location' )) { 
+            config.data_source_location = document.querySelector( '.data-source-location' )?.innerHTML || "" }
         this.model             = new Model( new SourceData({ Runner: FetchRunner, url: config.data_source_location }));
         this.logObjectFactory  = new LogObjectFactory();
         this.monitorLed        = new MonitorLed();

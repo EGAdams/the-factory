@@ -1,4 +1,4 @@
-import ILogObject       from "./ILogObject.js";
+import ILogObject       from "../abstract/ILogObject";
 import MonitoredObject from "./MonitoredObject.js";
 /**
  * @description
@@ -24,9 +24,12 @@ class LogObjectFactory {
     _getCallingMethod() {
         const obj = new Error();
         Error.captureStackTrace( obj, this._getCallingMethod );
-        if ( obj.stack.split( '\n' )[ 2 ].match( /at\s+\w+.(\w+)/ ) == null ) {
+        if ( obj.stack?.split( '\n' )[ 2 ].match( /at\s+\w+.(\w+)/ ) == null ) {
             return 'unknown'; }
-        return obj.stack.split( '\n' )[ 2 ].match( /at\s+\w+.(\w+)/ )[ 1 ];
+        let split_stack = obj.stack.split( '\n' )[ 2 ];
+        let split_stack_match = split_stack.match( /at\s+\w+.(\w+)/ );
+        if ( !split_stack_match ) { return "no split_stack_match!"; }
+        return split_stack_match[ 1 ];
     }
 }
 
