@@ -27,7 +27,7 @@ export default class SourceData {
         const api_path = this.url + "object/selectAll";
         const runner = new this.RunnerObject( api_path );
         const run_config = { type: "GET" }
-        runner.run( run_config, callbackObject.processQueryResult ); }
+        runner.run( run_config, callbackObject ); }
 
     /**
      * selects one object from the database
@@ -50,7 +50,7 @@ export default class SourceData {
         const run_config = { type: "POST",
                             object_view_id: query_config.object_view_id,
                             object_data:    query_config.object_data };
-        runner.run( run_config, callbackObject.processQueryResult ); }
+        runner.run( run_config, callbackObject ); }
 
     /**
      * Will update an existing object in the database.
@@ -69,5 +69,5 @@ export default class SourceData {
         const run_config = { type: "POST",
                             object_view_id: query_config.object_view_id,
                             object_data:    query_config.object_data };
-        runner.run( run_config, callbackObject.processQueryResult ); }
+        runner.run( run_config, callbackObject ); }
 }

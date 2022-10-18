@@ -5,3 +5,14 @@ if ( logObjects.length !== this.log_length ) {
     this.log_length = logObjects.length;
     this.displayLogObjects( logObjects );
 }
+
+/**
+ * October 18, 2022
+ * 
+ * When changing to response.text() we get rid of the unacceptable json error,
+ * but we need to do things like JSON.parse( JSON.parse( query_result ).object_data )
+ * because query_result is now text.
+ * 
+ * now to get insert object working...
+ * 
+ */

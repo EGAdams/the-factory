@@ -63,14 +63,15 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     }
 
     start() {
+        this.logUpdate( "monitor led component starting..." );
         let source_query_config = { object_view_id: this.monitored_object_id, object_data: {}};
         let model               = new Model( new SourceData({ Runner: FetchRunner, url: this.data_source_location }));
         setInterval(() => { model.selectObject( source_query_config, this ); }, 2500 ); }
 
     processQueryResult( callbackObject: MonitorLed, query_result: any ) {
-        if( !query_result || !query_result.object_data ) { return; }
-        let data = JSON.parse( query_result.object_data );
-        callbackObject.monitor_led_data = data.monitorLedData;
+        if( !query_result || !JSON.parse( query_result ).object_data ) { return; }
+        let data = JSON.parse( JSON.parse( query_result ).object_data );
+        callbackObject.monitor_led_data = data.monitor_led_data;
         callbackObject.render();
         const event_name = "event-" + callbackObject.kebabize( data.construction_name ) + "-" + data.object_id;
         let led_event = new CustomEvent( event_name, { bubbles: true, detail: data });
