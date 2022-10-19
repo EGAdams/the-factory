@@ -25,13 +25,13 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
      * This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
      */
     connectedCallback () {
-        this.monitored_object_id  = document.querySelector( "monitor-led" )?.getAttribute( "monitored_object_id"  ) as string;
-        this.data_source_location = document.querySelector( "monitor-led" )?.getAttribute( "data_source_location" ) as string;
-        console.log( 'monitor-led connected' );
+        this.data_source_location  = document.querySelector( ".data-source-location" )?.innerHTML as string;
+        this.monitored_object_id   = document.querySelector( ".monitored-object-id"  )?.innerHTML as string;
+        this.logUpdate( 'monitor-led connected' );
         this.render().start();
     }
 
-    render() { console.log( "render called." ); 
+    render() { 
         this.$el.innerHTML = `
         <div class="monitor-led">${ this.monitor_led_data.ledText }</div>
         `;
