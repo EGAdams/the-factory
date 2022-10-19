@@ -15,4 +15,9 @@ if ( logObjects.length !== this.log_length ) {
  * 
  * now to get insert object working...
  * 
+ * October 19, 2022
+ * // replacer: ((this: any, key: string, value: any ) => any ) | null, ... notice the parentheses, these are needed.
+ *   stringify ( val: any, depth: number, replacer: ((this: any, key: string, value: any ) => any ) | null, space?: string | number, onGetObjID?: ( val: object ) => string ): string {
+ *  
+ * 
  */

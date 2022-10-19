@@ -71,9 +71,11 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     processQueryResult( callbackObject: MonitorLed, query_result: any ) {
         if( !query_result || !JSON.parse( query_result ).object_data ) { return; }
         let data = JSON.parse( JSON.parse( query_result ).object_data );
-        callbackObject.monitor_led_data = data.monitor_led_data;
+        callbackObject.monitor_led_data = data.monitorLed;
         callbackObject.render();
-        const event_name = "event-" + callbackObject.kebabize( data.construction_name ) + "-" + data.object_id;
+        let object_id = callbackObject.object_view_id; // 
+        let the_match = object_id.match( /\d+/ )![0]!;
+        const event_name = "event-" + callbackObject.kebabize( callbackObject.constructor.name ) + "-" + the_match;
         let led_event = new CustomEvent( event_name, { bubbles: true, detail: data });
         document.dispatchEvent( led_event); } // this.$emit( 'led-data', data.monitorLedData ); doesn't work! 
     
