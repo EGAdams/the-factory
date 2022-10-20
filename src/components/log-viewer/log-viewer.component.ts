@@ -37,7 +37,9 @@ export class LogViewer implements IWebComponent {
             this.displayLogObjects( logObjects, this );
         }
     }  
-    constructor( private $el: HTMLElement, private $host: Element ) {}
+    constructor( private $el: HTMLElement, private $host: Element ) {
+        this.data_source_location = $host.getAttribute( "data_source_location"  )!, 
+        this.monitored_object_id  = $host.getAttribute( "monitored_object_id"   )! }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
@@ -48,8 +50,6 @@ export class LogViewer implements IWebComponent {
         this.$log_viewer_container = this.$el.querySelector(                   ".screen-area"          )!;
         this.$object_name_header   = this.$log_viewer_container.querySelector( ".object-name"          )!;
         this.$list_of_log_objects  = this.$log_viewer_container.querySelector( ".list-of-log-objects"  )!;
-        this.data_source_location  = document.querySelector( ".data-source-location" )?.innerHTML as string;
-        this.monitored_object_id   = document.querySelector( ".monitored-object-id"  )?.innerHTML as string;
         this.$object_name_header.innerHTML = this.monitored_object_id;
         const logObjectSourceConfiguration = new SourceConfig( "url", this.data_source_location, this.monitored_object_id );
         this.logObjectContainerSource      = new LogObjectContainerSource( logObjectSourceConfiguration );

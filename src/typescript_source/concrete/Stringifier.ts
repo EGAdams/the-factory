@@ -16,3 +16,5 @@ export default class Stringifier {
         return JSON.stringify( _build( val, depth ), null, space );
     }
 }    
+
+// https://stackoverflow.com/questions/13861254/json-stringify-deep-objects/57193345#57193345 // typescript version

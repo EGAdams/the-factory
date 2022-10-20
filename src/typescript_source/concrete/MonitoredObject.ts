@@ -13,15 +13,16 @@ export default class MonitoredObject {
     logObjectFactory:   LogObjectFactory;
     monitorLed:         MonitorLed;
     stringifier:        Stringifier;
-    constructor( config: { new_id: string, data_source_location: string; } ) {
-        // if ( config.new_id.length === 0 ) { config.new_id = Math.floor( Math.random() * 1000 + 1000 ).toString(); }
-        config.new_id          = "1001"; 
-        this.object_view_id    = `${ this.constructor.name }_${ config.new_id }`;
+    constructor( config: { new_id: string | null, data_source_location: string | null; } ) {
+        if ( config.new_id?.length === 0 ) { config.new_id = Math.floor( Math.random() * 1000 + 1000 ).toString(); }
+        if ( config.new_id?.includes('_')) {
+            this.object_view_id = config.new_id
+        } else { this.object_view_id = `${ this.constructor.name }_${ config.new_id }`; }
         this.logObjectFactory  = new LogObjectFactory();
         this.logObjects        = [ this.logObjectFactory.createLogObject( "constructing...", this )];
-        if ( config.data_source_location.length === 0 && document.querySelector( '.data-source-location' )) { 
+        if ( config.data_source_location?.length === 0 && document.querySelector( '.data-source-location' )) { 
             config.data_source_location = document.querySelector( '.data-source-location' )?.innerHTML || "" }
-        this.model             = new Model( new SourceData({ Runner: FetchRunner, url: config.data_source_location }));
+        this.model             = new Model( new SourceData({ Runner: FetchRunner, url: config.data_source_location! }));
         this.monitorLed        = new MonitorLed();
         this.stringifier       = new Stringifier();
         const data_config        = { object_view_id: this.object_view_id, object_data: this.stringifier.stringify( this, 3, null, 2 )};

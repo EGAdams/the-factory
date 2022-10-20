@@ -11,22 +11,24 @@ import IQueryResultProcessor from '@/typescript_source/abstract/IQueryResultProc
 @Component({ html: html, style: style, properties: []})
 export class MonitorLed extends MonitoredObject implements IWebComponent, IQueryResultProcessor {
 
-    monitored_object_id  :string = "";
-    data_source_location :string = "";
+    monitored_object_id  = "";
+    data_source_location :string | null = "";
     monitor_led_data     :ServerLedData = new ServerLedData();
 
     // return an array containing the names of the attributes you want to observe.  Not sure why this is here yet.
     static observedAttributes () {}
 
-    constructor( private $el: HTMLElement, private $host: Element ) { super( { new_id: "", data_source_location: "" }); }
+    constructor( private $el: HTMLElement, private $host: Element ) { 
+        super( { new_id:               $host.getAttribute( "monitored_object_id"  ), 
+                 data_source_location: $host.getAttribute( "data_source_location" ) }); 
+        this.data_source_location  = $host.getAttribute(   "data_source_location" ) as string;
+        this.monitored_object_id   = $host.getAttribute(   "monitored_object_id"  ) as string; }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
      * This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
      */
     connectedCallback () {
-        this.data_source_location  = document.querySelector( ".data-source-location" )?.innerHTML as string;
-        this.monitored_object_id   = document.querySelector( ".monitored-object-id"  )?.innerHTML as string;
         this.logUpdate( 'monitor-led connected' );
         this.render().start();
     }
@@ -65,7 +67,7 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     start() {
         this.logUpdate( "monitor led component starting..." );
         let source_query_config = { object_view_id: this.monitored_object_id, object_data: {}};
-        let model               = new Model( new SourceData({ Runner: FetchRunner, url: this.data_source_location }));
+        let model               = new Model( new SourceData({ Runner: FetchRunner, url: this.data_source_location! }));
         setInterval(() => { model.selectObject( source_query_config, this ); }, 2500 ); }
 
     processQueryResult( callbackObject: MonitorLed, query_result: any ) {

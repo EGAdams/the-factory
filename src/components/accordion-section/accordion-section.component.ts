@@ -2,12 +2,19 @@ import html from './accordion-section.html';
 import style from './styles/main.css';
 import { Component } from "@/utils";
 
-@Component({ html: html, style: style, properties: []})
+@Component({ html: html, style: style, properties: [ "object_id", "data_source_location" ]})
 export class AccordionSection implements IWebComponent {
+    
+    monitored_object_id  :string | null = "";
+    data_source_location :string | null = "";
 
     static observedAttributes(){} // return an array containing the names of the attributes you want to observe
 	
-    constructor( private $el: HTMLElement, private $host: Element ) {}
+    constructor( private $el: HTMLElement, private $host: Element ) {
+        console.log( "constructing accordion..." );
+        this.monitored_object_id = $host.getAttribute( "monitored_object_id" );
+        this.data_source_location = $host.getAttribute( "data_source_location" );
+    }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
@@ -15,6 +22,17 @@ export class AccordionSection implements IWebComponent {
      */
     connectedCallback() {
         console.log( 'accordion-section connected' );
+        this.$el.innerHTML = `
+        <log-viewer 
+            monitored_object_id="${this.monitored_object_id}" 
+            data_source_location="${this.data_source_location}">
+        </log-viewer>
+
+        <monitor-led 
+            id="monitor_led" 
+            monitored_object_id="${this.monitored_object_id}" 
+            data_source_location="${this.data_source_location}">
+        </monitor-led>`;
     }
 
     /** Invoked each time the custom element is disconnected from the document's DOM. */

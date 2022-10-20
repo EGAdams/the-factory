@@ -7,6 +7,13 @@ if ( logObjects.length !== this.log_length ) {
 }
 
 /**
+ * 
+ * October 20, 2022
+ * 
+ *  >>--> need to pass in object id and datasource location to the accordion section
+ *  passed in, works comitting...
+ * 
+ * 
  * October 18, 2022
  * 
  * When changing to response.text() we get rid of the unacceptable json error,
@@ -18,6 +25,6 @@ if ( logObjects.length !== this.log_length ) {
  * October 19, 2022
  * // replacer: ((this: any, key: string, value: any ) => any ) | null, ... notice the parentheses, these are needed.
  *   stringify ( val: any, depth: number, replacer: ((this: any, key: string, value: any ) => any ) | null, space?: string | number, onGetObjID?: ( val: object ) => string ): string {
- *  
+ * 
  * 
  */
