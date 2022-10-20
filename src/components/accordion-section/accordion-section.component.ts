@@ -22,18 +22,58 @@ export class AccordionSection implements IWebComponent {
      */
     connectedCallback() {
         console.log( 'accordion-section connected' );
+        console.log( "monitored_object_id: " + this.monitored_object_id );
+        let name_split = this.monitored_object_id?.split( "_" );
+        let numeral_id = name_split![ 1 ];
+        let kebob_name = this.kebabize( name_split![ 0 ] );
         this.$el.innerHTML = `
-        <log-viewer 
-            monitored_object_id="${this.monitored_object_id}" 
-            data_source_location="${this.data_source_location}">
-        </log-viewer>
+        <div class="accordion" id="accordion-color-${ kebob_name}-${numeral_id}">
+            <strong>${ this.monitored_object_id }</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="accordion-text-${ kebob_name}-${numeral_id}"></span>
+        </div>
+        <div class="panel">
+            <log-viewer 
+                monitored_object_id="${this.monitored_object_id}" 
+                data_source_location="${this.data_source_location}">
+            </log-viewer>
 
-        <monitor-led 
-            id="monitor_led" 
-            monitored_object_id="${this.monitored_object_id}" 
-            data_source_location="${this.data_source_location}">
-        </monitor-led>`;
+            <monitor-led 
+                id="monitor_led" 
+                monitored_object_id="${this.monitored_object_id}" 
+                data_source_location="${this.data_source_location}">
+            </monitor-led>
+        </div>`;
+
+        let led_listen_event = `event-${ kebob_name}-${numeral_id}`;
+        let accordion_color = `accordion-color-${ kebob_name}-${numeral_id}`;
+        let accordion_text  = `accordion-text-${ kebob_name}-${numeral_id}`;
+        document.addEventListener( led_listen_event,  ( event: any ) => {
+                let accordion_background_color = document.getElementById( accordion_color );
+                if ( !accordion_background_color ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
+                console.log( "*** accordion-section.vue: event received: " + led_listen_event );
+                accordion_background_color.parentElement!.style.backgroundColor = event.detail.monitorLedData.classObject.background_color;
+                accordion_background_color.style.backgroundColor = event.detail.monitorLedData.classObject.background_color;
+                let accordion_text_element = document.getElementById( accordion_text );
+                if ( !accordion_text_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
+                accordion_text_element.innerHTML = event.detail.monitorLedData.ledText;
+            });
+
+        setTimeout( () => {
+            let accordion_element = this.$host;    
+            accordion_element!.addEventListener( "click", ( click_event ) => {
+                const accordion_section_clicked = click_event.currentTarget as HTMLElement;
+                const panel = accordion_section_clicked.lastChild as HTMLElement;
+                if ( panel.style.display === "block" ) {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block"; }}); }, 1000 );
     }
+
+    kebabize( str: string ) {
+        return str.split('').map((letter, idx) => {
+            return letter.toUpperCase() === letter
+            ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+            : letter; }).join(''); }
 
     /** Invoked each time the custom element is disconnected from the document's DOM. */
     disconnectedCallback() { console.log( 'accordion-section disconnected' ); }
