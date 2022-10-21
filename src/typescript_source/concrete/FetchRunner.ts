@@ -20,10 +20,15 @@ export default class FetchRunner {
             headers: apiArgs.type === "POST" ? /* POST */ this.json_header          : /* GET */ this.url_encoded_header,
             body:    apiArgs.type === "POST" ? /* POST */ JSON.stringify( apiArgs ) : /* GET */ undefined
         };
-        fetch( this.url, this.fetch_options ).then( res => {
-            return res.text();
-        }).then( data => {
-            callbackObject.processQueryResult( callbackObject, data );
-        }); }
+        try {
+            fetch( this.url, this.fetch_options ).then( res => {
+                return res.text();
+            }).then( data => {
+                callbackObject.processQueryResult( callbackObject, data );
+            }); 
+        } catch( fetch_error ) {
+            console.log( fetch_error );
+        }
+    }
 }
 // xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" ); // allows "sql="... syntax!

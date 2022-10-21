@@ -48,24 +48,27 @@ export class AccordionSection implements IWebComponent {
         let accordion_color = `accordion-color-${ kebob_name}-${numeral_id}`;
         let accordion_text  = `accordion-text-${ kebob_name}-${numeral_id}`;
         document.addEventListener( led_listen_event,  ( event: any ) => {
-                let accordion_background_color = document.getElementById( accordion_color );
+                // let accordion_background_color = document.getElementById( accordion_color );
+                let accordion_background_color = event.detail.monitor_led.$host.parentElement.previousElementSibling;
                 if ( !accordion_background_color ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
                 console.log( "*** accordion-section.vue: event received: " + led_listen_event );
-                accordion_background_color.parentElement!.style.backgroundColor = event.detail.monitorLedData.classObject.background_color;
-                accordion_background_color.style.backgroundColor = event.detail.monitorLedData.classObject.background_color;
-                let accordion_text_element = document.getElementById( accordion_text );
+                accordion_background_color!.style.backgroundColor = event.detail.monitor_led.monitor_led_data.classObject.background_color;
+                event.detail.monitor_led.$host.parentElement.style.backgroundColor = event.detail.monitor_led.monitor_led_data.classObject.background_color;
+                // let accordion_text_element = document.getElementById( accordion_text );
+                let accordion_text_element = event.detail.monitor_led.$host.parentElement.previousElementSibling.firstElementChild.nextElementSibling;
                 if ( !accordion_text_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
-                accordion_text_element.innerHTML = event.detail.monitorLedData.ledText;
+                accordion_text_element.innerHTML = event.detail.monitor_led.monitor_led_data.ledText;
             });
 
         setTimeout( () => {
             let accordion_element = this.$host;    
             accordion_element!.addEventListener( "click", ( click_event ) => {
                 const accordion_section_clicked = click_event.currentTarget as HTMLElement;
-                const panel = accordion_section_clicked.lastChild as HTMLElement;
-                if ( panel.style.display === "block" ) {
+                const panel = accordion_section_clicked.shadowRoot?.querySelector<HTMLElement>( ".panel" );
+                if ( panel?.style.display === "block" ) {
                     panel.style.display = "none";
                 } else {
+                    if ( panel )
                     panel.style.display = "block"; }}); }, 1000 );
     }
 
