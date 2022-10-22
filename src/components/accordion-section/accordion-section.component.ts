@@ -27,7 +27,7 @@ export class AccordionSection implements IWebComponent {
         let numeral_id = name_split![ 1 ];
         let kebob_name = this.kebabize( name_split![ 0 ] );
         this.$el.innerHTML = `
-        <div class="accordion" id="accordion-color-${ kebob_name}-${numeral_id}">
+        <div class="" id="accordion-color-${ kebob_name}-${numeral_id}">
             <strong>${ this.monitored_object_id }</strong>&nbsp;&nbsp;&nbsp;&nbsp;
             <span id="accordion-text-${ kebob_name}-${numeral_id}"></span>
         </div>
