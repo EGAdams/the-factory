@@ -4,6 +4,5 @@
 /dist/*.js.map
 /package
 public/dist/
-public/index.html
 src/typescript_source/concrete/config/
 test.html
