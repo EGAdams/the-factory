@@ -74,7 +74,7 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
         if( !query_result || !JSON.parse( query_result ).object_data ) { return; }
         let data = JSON.parse( JSON.parse( query_result ).object_data );
         data.monitor_led = callbackObject;
-        callbackObject.monitor_led_data = data.monitorLed;
+        callbackObject.monitor_led_data = callbackObject.monitorLed;
         callbackObject.render();
         let object_id = callbackObject.object_view_id; // 
         let the_match = object_id.match( /\d+/ )![0]!;

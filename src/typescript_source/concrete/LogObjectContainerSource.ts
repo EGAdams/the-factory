@@ -37,7 +37,7 @@ export class LogObjectContainerSource implements IQueryResultProcessor {
     refreshFromDatabase() { this.model.selectObject( this.source_query_config, this ); }
 
     processQueryResult( resultProcessor: LogObjectContainerSource, result: any ) {
-        if( result.length  == 0 ) { return; }
+        if( result.length  == 0  || result.trim() == "null" ) { return; }
         const object_data = JSON.parse( JSON.parse( result ).object_data );
         const logObjects = object_data.logObjects;
         for ( const logObject of logObjects ) {
