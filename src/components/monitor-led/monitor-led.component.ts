@@ -10,7 +10,6 @@ import IQueryResultProcessor from '@/typescript_source/abstract/IQueryResultProc
 
 @Component({ html: html, style: style, properties: []})
 export class MonitorLed extends MonitoredObject implements IWebComponent, IQueryResultProcessor {
-
     monitored_object_id  = "";
     data_source_location :string | null = "";
     monitor_led_data     :ServerLedData = new ServerLedData();
@@ -18,10 +17,10 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     // return an array containing the names of the attributes you want to observe.  Not sure why this is here yet.
     static observedAttributes () {}
 
-    constructor( private $el: HTMLElement, private $host: Element ) { 
+    constructor( private $el: HTMLElement, private $host: Element ) {// data_source_location is the same on the page here.
         super( { new_id: "", data_source_location: $host.getAttribute( "data_source_location" ) }); 
-        this.data_source_location  = $host.getAttribute(   "data_source_location" ) as string;
-        this.monitored_object_id   = this.getObjectViewId(                        ) as string; }
+        this.data_source_location = $host.getAttribute( "data_source_location" ) as string;
+        this.monitored_object_id  = this.object_view_id; }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
@@ -65,12 +64,13 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
 
     start() {
         this.logUpdate( "monitor led component starting..." );
-        let source_query_config = { object_view_id: this.monitored_object_id, object_data: {}};
+        let object_being_monitored = this.$host.getAttribute( "monitored_object_id"  ) as string;
+        let source_query_config = { object_view_id: object_being_monitored, object_data: {}};
         let model               = new Model( new SourceData({ Runner: FetchRunner, url: this.data_source_location! }));
         setInterval(() => { model.selectObject( source_query_config, this ); }, 2500 ); }
 
     processQueryResult( callbackObject: MonitorLed, query_result: any ) {
-        if( !query_result || !JSON.parse( query_result ).object_data ) { return; }
+        if( typeof( query_result ) == "string" || !JSON.parse( query_result ).object_data ) { return; }
         let data = JSON.parse( JSON.parse( query_result ).object_data );
         data.monitor_led = callbackObject;
         callbackObject.monitor_led_data = callbackObject.monitorLed;
