@@ -19,10 +19,9 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     static observedAttributes () {}
 
     constructor( private $el: HTMLElement, private $host: Element ) { 
-        super( { new_id:               $host.getAttribute( "monitored_object_id"  ), 
-                 data_source_location: $host.getAttribute( "data_source_location" ) }); 
+        super( { new_id: "", data_source_location: $host.getAttribute( "data_source_location" ) }); 
         this.data_source_location  = $host.getAttribute(   "data_source_location" ) as string;
-        this.monitored_object_id   = $host.getAttribute(   "monitored_object_id"  ) as string; }
+        this.monitored_object_id   = this.getObjectViewId(                        ) as string; }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
