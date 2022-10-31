@@ -4,16 +4,26 @@ import { Component } from "@/utils";
 
 @Component({ html: html, style: style, properties: [ "object_id", "data_source_location" ]})
 export class AccordionSection implements IWebComponent {
+    [x: string]: any;
     
     monitored_object_id  :string | null = "";
     data_source_location :string | null = "";
-
+    
     static observedAttributes(){} // return an array containing the names of the attributes you want to observe
 	
     constructor( private $el: HTMLElement, private $host: Element ) {
         console.log( "constructing accordion..." );
         this.monitored_object_id = $host.getAttribute( "monitored_object_id" );
         this.data_source_location = $host.getAttribute( "data_source_location" );
+        console.log( "monitored_object_id: " + this.monitored_object_id );
+        let name_split = this.monitored_object_id?.split( "_" );
+        let numeral_id = name_split![ 1 ];
+        let kebob_name = this.kebabize( name_split![ 0 ] );
+        this.sourceHtmlText = this.sourceHtmlText?.
+            replaceAll( "{{ kebob_name }}", kebob_name  ).
+            replaceAll( "{{ numeral_id }}", numeral_id  ).
+            replaceAll( "{{ monitored_object_id }}" , this.monitored_object_id  ).
+            replaceAll( "{{ data_source_location }}", this.data_source_location );
     }
 
     /**
@@ -26,24 +36,7 @@ export class AccordionSection implements IWebComponent {
         let name_split = this.monitored_object_id?.split( "_" );
         let numeral_id = name_split![ 1 ];
         let kebob_name = this.kebabize( name_split![ 0 ] );
-        this.$el.innerHTML = `
-        <div class="" id="accordion-color-${ kebob_name}-${numeral_id}">
-            <strong>${ this.monitored_object_id }</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span id="accordion-text-${ kebob_name}-${numeral_id}"></span>
-        </div>
-        <div class="panel">
-            <log-viewer 
-                monitored_object_id="${this.monitored_object_id}" 
-                data_source_location="${this.data_source_location}">
-            </log-viewer>
-
-            <monitor-led 
-                id="monitor_led" 
-                monitored_object_id="${this.monitored_object_id}" 
-                data_source_location="${this.data_source_location}">
-            </monitor-led>
-        </div>`;
-
+    
         let led_listen_event = `event-${ kebob_name}-${numeral_id}`;
         let accordion_color = `accordion-color-${ kebob_name}-${numeral_id}`;
         let accordion_text  = `accordion-text-${ kebob_name}-${numeral_id}`;
