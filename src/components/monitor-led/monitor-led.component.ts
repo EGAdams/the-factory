@@ -74,11 +74,13 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
         let data = JSON.parse( JSON.parse( query_result ).object_data );
         this.monitor_led_data = data.monitorLed;
         this.render();
-        let object_id = callbackObject.object_view_id;
-        let the_match = object_id.match( /\d+/ )![0]!;
-        const event_name = "event-" + this.kebabize( callbackObject.constructor.name ) + "-" + the_match;
+        let object_being_monitored = this.$host.getAttribute( "monitored_object_id"  ) as string;
+        let the_number_part = object_being_monitored.match( /\d+/ )![0]!;
+        let the_name_part   = object_being_monitored.replace( "_" + the_number_part, ""); 
+        const event_name = "event-" + this.kebabize( the_name_part ) + "-" + the_number_part;
+        data.noisy_component = this;
         let led_event = new CustomEvent( event_name, { bubbles: true, detail: data });
-        document.dispatchEvent( led_event); } // this.$emit( 'led-data', data.monitorLedData ); doesn't work! 
+        document.dispatchEvent( led_event); }
     
     kebabize( str: string ) {
         return str.split('').map((letter, idx) => {
