@@ -3,4 +3,19 @@
  *  accordion section template
  *
 -->
-<div class="accordion-section"></div>
+<div class="accordion" id="accordion-color-{{ kebob_name }}-{{ numeral_id }}">
+    <strong>{{ monitored_object_id }}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span id="accordion-text-{{ kebob_name }}-{{ numeral_id }}"></span>
+</div>
+<div class="panel">
+    <log-viewer 
+        monitored_object_id="{{ monitored_object_id }}" 
+        data_source_location="{{ data_source_location }}">
+    </log-viewer>
+
+    <monitor-led 
+        id="monitor_led" 
+        monitored_object_id="{{ monitored_object_id }}" 
+        data_source_location="{{ data_source_location }}">
+    </monitor-led>
+</div>
