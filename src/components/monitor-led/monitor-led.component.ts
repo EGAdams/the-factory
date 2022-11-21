@@ -4,12 +4,11 @@ import { Component } from "@/utils";
 import ServerLedData from "@/typescript_source/concrete/ServerLedData";
 import FetchRunner from "@/typescript_source/concrete/FetchRunner";
 import SourceData from "@/typescript_source/concrete/SourceData";
-import MonitoredObject from "@/typescript_source/concrete/MonitoredObject";
 import Model from "@/typescript_source/concrete/Model";
 import IQueryResultProcessor from '@/typescript_source/abstract/IQueryResultProcessor';
 
 @Component({ html: html, style: style, properties: []})
-export class MonitorLed extends MonitoredObject implements IWebComponent, IQueryResultProcessor {
+export class MonitorLed implements IWebComponent, IQueryResultProcessor {
     monitored_object_id  = "";
     data_source_location :string | null = "";
     monitor_led_data     :ServerLedData = new ServerLedData();
@@ -17,17 +16,15 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     // return an array containing the names of the attributes you want to observe.  Not sure why this is here yet.
     static observedAttributes () {}
 
-    constructor( private $el: HTMLElement, private $host: Element ) {// data_source_location is the same on the page here.
-        super( { new_id: "", data_source_location: $host.getAttribute( "data_source_location" ) }); 
-        this.data_source_location = $host.getAttribute( "data_source_location" ) as string;
-        this.monitored_object_id  = this.object_view_id; }
+    constructor( private $el: HTMLElement, private $host: Element ) {
+        this.data_source_location = $host.getAttribute( "data_source_location" ) as string; }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
      * This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
      */
     connectedCallback () {
-        this.logUpdate( 'monitor-led connected' );
+        // this.logUpdate( 'monitor-led connected' );
         this.render().start();
     }
 
@@ -63,7 +60,7 @@ export class MonitorLed extends MonitoredObject implements IWebComponent, IQuery
     }
 
     start() {
-        this.logUpdate( "monitor led component starting..." );
+        // this.logUpdate( "monitor led component starting..." );
         let object_being_monitored = this.$host.getAttribute( "monitored_object_id"  ) as string;
         let source_query_config = { object_view_id: object_being_monitored, object_data: {}};
         let model               = new Model( new SourceData({ Runner: FetchRunner, url: this.data_source_location! }));
