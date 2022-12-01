@@ -1,7 +1,7 @@
 /** @class ServerLedData */
 import IMonitorLedData from "../abstract/IMonitorLedData";
 class ServerLedData implements IMonitorLedData {
-    constructor() { console.log( "constructing ServerLedData..." ); } // hush warning.
+    constructor() { /* console.log( "constructing ServerLedData..." );*/ } // hush warning.
 
     ledText = "checking status...";
     classObject = {

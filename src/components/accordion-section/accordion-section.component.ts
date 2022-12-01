@@ -43,7 +43,7 @@ export class AccordionSection implements IWebComponent {
         document.addEventListener( led_listen_event,  ( event: any ) => {
                 let accordion_background_element = event.detail.noisy_component.$host.parentElement.previousElementSibling;
                 if ( !accordion_background_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
-                console.log( "*** accordion-section: event received: " + led_listen_event );
+                // console.log( "*** accordion-section: event received: " + led_listen_event );
                 accordion_background_element!.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
                 event.detail.noisy_component.$host.parentElement.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
                 accordion_background_element!.style.color = event.detail.monitorLed.classObject.color;

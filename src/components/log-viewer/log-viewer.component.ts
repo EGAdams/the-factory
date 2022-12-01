@@ -30,7 +30,7 @@ export class LogViewer implements IWebComponent {
     }
     
     set logs( logObjects: ILogObject[]) {
-        console.log('prop written, new value', logObjects );
+        // console.log('prop written, new value', logObjects );
         if ( logObjects.length !== this.log_length ) { 
             console.log( "length changed! "); 
             this.log_length = logObjects.length;
@@ -47,7 +47,7 @@ export class LogViewer implements IWebComponent {
      * This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
      */
     connectedCallback() {
-        console.log( 'defining log viewer elements...' );
+        // console.log( 'defining log viewer elements...' );
         this.$log_viewer_container = this.$el.querySelector(                   ".screen-area"          )!;
         this.$object_name_header   = this.$log_viewer_container.querySelector( ".object-name"          )!;
         this.$list_of_log_objects  = this.$log_viewer_container.querySelector( ".list-of-log-objects"  )!;
@@ -74,7 +74,7 @@ export class LogViewer implements IWebComponent {
 
     start() {
         setInterval(() => { 
-            console.log( "refreshing logs... " );
+            // console.log( "refreshing logs... " );
             this.logObjectContainerSource.refresh();
             this.logs = this.logObjectContainerSource.logObjectProcessor.getWrittenLogs(); }, 1000 ); }
 

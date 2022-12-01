@@ -1,5 +1,5 @@
 .log-object-container {
-    column-gap: 15px;
+    column-gap: 17px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -7,6 +7,7 @@
     padding: 0.1px;
     border: solid 0.0px;
     margin-bottom: 3px;
+    font-size: 23px;
 }
 li { 
     list-style: none;

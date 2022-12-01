@@ -15,7 +15,7 @@ export class LogObjectProcessor  {
     unwrittenLogs: Array< ILogObject > = [];
 
     constructor( logObjectContainerArg: LogObjectContainer ) {
-        console.log( 'constructing LogObjectProcessor object...' );
+        // console.log( 'constructing LogObjectProcessor object...' );
         this.logObjectContainer = logObjectContainerArg; }
 
     updateQue() {
