@@ -30,7 +30,12 @@ export default class MonitoredObject {
 
     logUpdate( message : string ) {
         if ( !this.object_view_id ) {  console.log( "*** ERROR: object needs an id to log. ***" ); return; }
-        if ( message.includes( "ERROR" )) { this.monitorLed.setFail( message ); } else { this.monitorLed.setLedText( message ); }
+        if ( message.includes( "ERROR" )) { 
+            this.monitorLed.setFail( message );
+        } else if( message.includes( "finished" )) {
+            this.monitorLed.setPass( message );
+        } else { 
+            this.monitorLed.setLedText( message ); }
         this.logObjects.push( this.logObjectFactory.createLogObject( message, this                   ));
         const data_config = { object_view_id: this.object_view_id, object_data: this.stringifier.stringify( this, 3, null, 2 )};
         this.model.updateObject( data_config, this                                                   ); }
