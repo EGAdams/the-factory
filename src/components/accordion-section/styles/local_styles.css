@@ -1,7 +1,7 @@
 :host {
     display: block;
     border: solid 1px gray;
-    padding: 16px;
+    padding: 4px;
     max-width: 1400px;
     margin-top: 11px;
 }
@@ -10,13 +10,14 @@
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 18px;
+    padding: 4px;
     width: inherit;
     border: none;
     text-align: left;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    display: none;
 }
 
 .active,

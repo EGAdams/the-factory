@@ -6,3 +6,5 @@
 public/dist/
 src/typescript_source/concrete/config/
 test.html
+public/boa_index.html
+.gitignore
