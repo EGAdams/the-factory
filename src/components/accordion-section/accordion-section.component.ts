@@ -23,8 +23,7 @@ export class AccordionSection implements IWebComponent {
             replaceAll( "{{ kebob_name }}", kebob_name  ).
             replaceAll( "{{ numeral_id }}", numeral_id  ).
             replaceAll( "{{ monitored_object_id }}" , this.monitored_object_id  ).
-            replaceAll( "{{ data_source_location }}", this.data_source_location );
-    }
+            replaceAll( "{{ data_source_location }}", this.data_source_location ); }
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
@@ -36,34 +35,29 @@ export class AccordionSection implements IWebComponent {
         let name_split = this.monitored_object_id?.split( "_" );
         let numeral_id = name_split![ 1 ];
         let kebob_name = this.kebabize( name_split![ 0 ] );
-    
         let led_listen_event = `event-${ kebob_name}-${numeral_id}`;
         let accordion_color = `accordion-color-${ kebob_name}-${numeral_id}`;
         let accordion_text  = `accordion-text-${ kebob_name}-${numeral_id}`;
         document.addEventListener( led_listen_event,  ( event: any ) => {
                 let accordion_background_element = event.detail.noisy_component.$host.parentElement.previousElementSibling;
                 if ( !accordion_background_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
-                // console.log( "*** accordion-section: event received: " + led_listen_event );
-                accordion_background_element!.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
+                accordion_background_element.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
                 event.detail.noisy_component.$host.parentElement.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
-                accordion_background_element!.style.color = event.detail.monitorLed.classObject.color;
+                accordion_background_element.style.color = event.detail.monitorLed.classObject.color;
                 event.detail.noisy_component.$host.parentElement.style.color = event.detail.monitorLed.classObject.color;
                 let accordion_text_element = event.detail.noisy_component.$host.parentElement.previousElementSibling.firstElementChild.nextElementSibling;
                 if ( !accordion_text_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
-                accordion_text_element.innerHTML = event.detail.monitorLed.ledText;
-            });
+                accordion_text_element.innerHTML = event.detail.monitorLed.ledText; });
 
-        setTimeout( () => {
+        setTimeout(() => {
             let accordion_element = this.$host;    
-            accordion_element!.addEventListener( "click", ( click_event ) => {
+            accordion_element.addEventListener( "click", ( click_event ) => {
                 const accordion_section_clicked = click_event.currentTarget as HTMLElement;
                 const panel = accordion_section_clicked.shadowRoot?.querySelector<HTMLElement>( ".panel" );
                 if ( panel?.style.display === "block" ) {
                     panel.style.display = "none";
                 } else {
-                    if ( panel )
-                    panel.style.display = "block"; }}); }, 1000 );
-    }
+                    if ( panel ) { panel.style.display = "block"; }}}); }, 1000 ); }
 
     kebabize( str: string ) {
         return str.split('').map((letter, idx) => {
@@ -85,8 +79,7 @@ export class AccordionSection implements IWebComponent {
      */
     attributeChangedCallback(name: string, oldValue: any, newValue: any ) {
         const nameProp = name.replace( /-[a-zA-Z]/g, ( found: string) => found.slice(1).toUpperCase());
-        ( this as any )[ nameProp ] = newValue;
-    }
+        ( this as any )[ nameProp ] = newValue; }
 }
 
 // Ref.: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements

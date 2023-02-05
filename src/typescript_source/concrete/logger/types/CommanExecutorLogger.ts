@@ -12,6 +12,8 @@ import IMonitoredObjectConfig from "../../../abstract/IMonitoredObjectConfig";
 
 	constructor( config :IMonitoredObjectConfig ) { super( config ); }
 	
+	/**  these can be removed at any point.  
+	 * just keeping them here because they're used everywhere.  */
     static capitalizeFirstLetter ( stringToUppercase: string ): string {
         return stringToUppercase.charAt( 0 ).toUpperCase() + stringToUppercase.slice( 1 ); }
 
