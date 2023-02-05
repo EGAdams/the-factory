@@ -40,6 +40,11 @@ export class AccordionSection implements IWebComponent {
         let accordion_text  = `accordion-text-${ kebob_name}-${numeral_id}`;
         document.addEventListener( led_listen_event,  ( event: any ) => {
                 let accordion_background_element = event.detail.noisy_component.$host.parentElement.previousElementSibling;
+                // accordion_background_element.style.display = "block";
+                /* change the css style display to "block" using javascript */
+                accordion_background_element!.style.display = "block";
+
+                
                 if ( !accordion_background_element ) { throw ( Error( "*** ERROR: element not defined! ***" ) ); }
                 accordion_background_element.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
                 event.detail.noisy_component.$host.parentElement.style.backgroundColor = event.detail.monitorLed.classObject.background_color;
