@@ -5,10 +5,13 @@ import observedAttributesLogViewer from './components/log-viewer/log-viewer.obse
 import observedAttributesLogObject from './components/log-object/log-object.observed-attributes';
 import observedAttributesInnerComponent from './components/inner-component/inner-component.observed-attributes';
 import observedAttributesAccordionSection from './components/accordion-section/accordion-section.observed-attributes';
+import observedAttributesConversationList from './components/conversation-list/conversation-list.observed-attributes';
 
-customElements.define( 'monitor-led' , wrap(()=>import( './components/monitor-led/monitor-led.component' ), 'MonitorLed', observedAttributesMonitorLed ));
-customElements.define( 'hello-world' , wrap(()=>import( './components/hello-world/hello-world.component' ), 'HelloWorld', observedAttributesHelloWorld ));
-customElements.define( 'log-viewer'  , wrap(()=>import( './components/log-viewer/log-viewer.component'   ), 'LogViewer' , observedAttributesLogViewer  ));
-customElements.define( 'log-object'  , wrap(()=>import( './components/log-object/log-object.component'   ), 'LogObject' , observedAttributesLogObject  ));
-customElements.define('inner-component', wrap(()=>import('./components/inner-component/inner-component.component'), 'InnerComponent', observedAttributesInnerComponent));
-customElements.define('accordion-section', wrap(()=>import('./components/accordion-section/accordion-section.component'), 'AccordionSection', observedAttributesAccordionSection));
+
+customElements.define( 'monitor-led',       wrap(()=>import( './components/monitor-led/monitor-led.component'             ), 'MonitorLed',       observedAttributesMonitorLed       ));
+customElements.define( 'hello-world',       wrap(()=>import( './components/hello-world/hello-world.component'             ), 'HelloWorld',       observedAttributesHelloWorld       ));
+customElements.define( 'log-viewer',        wrap(()=>import( './components/log-viewer/log-viewer.component'               ), 'LogViewer' ,       observedAttributesLogViewer        ));
+customElements.define( 'log-object',        wrap(()=>import( './components/log-object/log-object.component'               ), 'LogObject' ,       observedAttributesLogObject        ));
+customElements.define( 'inner-component',   wrap(()=>import( './components/inner-component/inner-component.component'     ), 'InnerComponent',   observedAttributesInnerComponent   ));
+customElements.define( 'accordion-section', wrap(()=>import( './components/accordion-section/accordion-section.component' ), 'AccordionSection', observedAttributesAccordionSection ));
+customElements.define( 'conversation-list', wrap(()=>import( './components/conversation-list/conversation-list.component' ), 'ConversationList', observedAttributesConversationList ));
