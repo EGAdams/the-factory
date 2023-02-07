@@ -1,4 +1,5 @@
 import MonitoredObject from "../../MonitoredObject";
+import IMonitoredObjectConfig from "../../../abstract/IMonitoredObjectConfig";
 
 /**
  *  @class DataObjectLogger
