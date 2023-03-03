@@ -30,6 +30,8 @@
   "include": [
     "src/components/**/*.ts",
     "src/components/**/*.tsx",
+    "src/typescript_source/**/*.ts",
+    "src/typescript_source/**/*.tsx",
     "tests/**/*.ts",
     "tests/**/*.tsx",
     "src/typings.d.ts",

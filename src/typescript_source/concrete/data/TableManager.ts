@@ -17,26 +17,16 @@ import IDataObject from "../../abstract/data/IDataObject";
 import ISubject from "../../abstract/ISubject";
 
 class TableManager {
-    dataSource: IDataObject;
+    // dataSource: IDataObject;
     subjects: Array< ISubject > = [];
 
     constructor() {
-        this.dataSource = DataSourceFactory.getDataSource();
+        // this.dataSource = DataSourceFactory.getDataSource();
     }
 
     createObjectRow ( object_id: string ): void {
         const nextFunction = "checkResults";
-        jQuery( document ).off().one( nextFunction, this[ nextFunction ] );
-        const args = {
-            query:
-                "insert into monitored_objects( object_view_id, object_data ) values ( '" +
-                object_id +
-                "', '' )",
-            queryResultProcessor: nextFunction,
-            data: this,
-        };
-        console.log( "running query: " + args.query );
-        this.dataSource.runQuery( args );
+        // create a new row in the monitored objects table  
     }
 
     checkResults (

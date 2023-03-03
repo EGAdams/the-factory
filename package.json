@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@types/estree": "^0.0.51",
+    "@types/mysql": "^2.15.21",
     "@types/webpack": "^5.28.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.0",
@@ -74,5 +75,9 @@
   "lint-staged": {
     "*.{ts,js}": "eslint --cache --fix"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/socket.io-client": "^3.0.0",
+    "mysql": "^2.18.1",
+    "socket.io-client": "^4.6.1"
+  }
 }

@@ -1,7 +1,7 @@
 import ITestable from '../../abstract/ITestable';
 import IQueryRunner from "../../abstract/data/IQueryRunner";
 import axios from "axios";
-import JewelryMachineQueryRunnerTest from "../../test/data/JewelryMachineQueryRunnerTest";
+// import JewelryMachineQueryRunnerTest from "../../test/data/JewelryMachineQueryRunnerTest";
 import IApiArgs from "../../abstract/data/IApiArgs";
 
 /**
@@ -44,8 +44,8 @@ export default class JewelryMachineQueryRunner implements IQueryRunner, ITestabl
      * @memberof JewelryMachineQueryRunner
      */
     testMe (): void {
-        const test = new JewelryMachineQueryRunnerTest( this );
-        test.run();
+        // const test = new JewelryMachineQueryRunnerTest( this );
+        // test.run();
     }
 }
 

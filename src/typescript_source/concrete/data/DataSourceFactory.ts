@@ -1,15 +1,13 @@
-import DataSource from "./DataSource";
-
 /*
  *  class DataSourceFactory
  */
 class DataSourceFactory {
   private constructor() {
-    console.log("constructing DataSourceFactory...");
+    console.log( "constructing DataSourceFactory..." );
   }
 
-  static getDataSource(): DataSource {
-    return DataSource.getInstance();
+  static getDataSource(): string {
+    return "the data source is a string";
   }
 }
 

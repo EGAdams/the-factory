@@ -4,10 +4,9 @@
 import mysql from 'mysql';
 import util  from  'util';
 import io from "socket.io-client";
-import BasicConfig from "../../../config/BasicConfig";
 import MonitoredObject from "../../MonitoredObject";
 import ICommandFinishedEmitter from "../../../abstract/ICommandFinishedEmitter";
-import IDatabaseConfig from '../../../abstract/IDatabaseConfig';
+import IDatabaseConfig from "../../../abstract/IDatabaseConfig";
 import IMonitoredObject from '../../../abstract/IMonitoredObject';
 import LoggerFactory from '../../logger/LoggerFactory';
 

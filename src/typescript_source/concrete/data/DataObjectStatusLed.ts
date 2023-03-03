@@ -13,6 +13,7 @@ class DataObjectStatus implements IMonitorLedData {
     background_color: "yellow",
     text_align: "left",
     margin_top: "4px",
+    color: "black",
   };
 }
 
