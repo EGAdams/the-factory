@@ -7,3 +7,4 @@ public/dist/
 src/typescript_source/concrete/config/
 test.html
 public/index.html
+out/

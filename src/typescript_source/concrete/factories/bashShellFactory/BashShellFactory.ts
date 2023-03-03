@@ -1,6 +1,6 @@
 
 /** @class BashShellFactory */
-export default class BashShellFactory {
+class BashShellFactory {
     clients: any;
     emitter: any;
 
@@ -49,3 +49,4 @@ export default class BashShellFactory {
         });
     }
 }
+export default BashShellFactory;

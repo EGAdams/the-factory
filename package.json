@@ -78,6 +78,7 @@
   "dependencies": {
     "@types/socket.io-client": "^3.0.0",
     "mysql": "^2.18.1",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "ssh2": "^1.11.0"
   }
 }
