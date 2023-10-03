@@ -1,3 +1,12 @@
+# Your role
+- Expert Typescript Web Component developer
+- My helpful assistant
+
+# Your task
+- Help me debug the reason why connectedCallback is not being called.
+
+## Typescript Source
+```ts
 import html from './monitor-led.html';
 import style from './styles/main.css';
 import { Component } from "@/utils";
@@ -69,9 +78,6 @@ export class MonitorLed implements IWebComponent, IQueryResultProcessor {
     processQueryResult( callbackObject: MonitorLed, query_result: any ) {
         if( query_result.length < 15 || !JSON.parse( query_result ).object_data ) { return; }
         let data = JSON.parse( JSON.parse( query_result ).object_data );
-        if ( Object.keys(data).length === 0 ) { 
-            this.render();
-            return; }
         this.monitor_led_data = data.monitorLed;
         this.render();
         let object_being_monitored = this.$host.getAttribute( "monitored_object_id"  ) as string;
@@ -89,5 +95,28 @@ export class MonitorLed implements IWebComponent, IQueryResultProcessor {
             : letter;
     }).join(''); }
 }
+```
 
-// Ref.: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
+## HTML Source
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>TypeScript Web Component</title>
+    <style></style>
+</head>
+<body>
+    <script src="./dist/bundle.js"></script>
+    <monitor-led class=""
+        monitored_object_id="MessageManager_2021" 
+        data_source_location="https://americansjewelry.com/libraries/local-php-api/index.php/">
+    </monitor-led>
+</body>
+</html>
+```
+
+## gpt-4 answer
+https://chat.openai.com/share/376bbee1-27c9-4660-94cb-aa1889a3ca55
