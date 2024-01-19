@@ -1,6 +1,6 @@
 import ITestable from '../../abstract/ITestable';
 import IQueryRunner from "../../abstract/data/IQueryRunner";
-import axios from "axios";
+// import axios from "axios";
 // import JewelryMachineQueryRunnerTest from "../../test/data/JewelryMachineQueryRunnerTest";
 import IApiArgs from "../../abstract/data/IApiArgs";
 
@@ -34,8 +34,8 @@ export default class JewelryMachineQueryRunner implements IQueryRunner, ITestabl
      * @memberof JewelryMachineQueryRunner
      */
     async runQuery ( apiArguments: IApiArgs ): Promise< void > {
-        const queryResults = await axios.get( this.url, { params: { sql: apiArguments.query } } );
-        apiArguments.queryResultProcessor.processQueryResult( queryResults );
+        // const queryResults = await axios.get( this.url, { params: { sql: apiArguments.query } } );
+        // apiArguments.queryResultProcessor.processQueryResult( queryResults );
     }
     
     /**

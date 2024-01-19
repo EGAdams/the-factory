@@ -27,7 +27,8 @@ export class AccordionSection implements IWebComponent {
 
     /**
      * Invoked each time the custom element is appended into a document-connected element.
-     * This will happen each time the node is moved, and may happen before the element's contents have been fully parsed.
+     * This will happen each time the node is moved, and may happen before the element's 
+     * contents have been fully parsed.
      */
     connectedCallback() {
         console.log( 'accordion-section connected' );
