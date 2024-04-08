@@ -1,14 +1,15 @@
 {
     "cSpell.words": [
-        "intanceof",
         "behaviour",
         "egadams",
+        "intanceof",
+        "promptInput",
         "rushstack",
+        "Stringifier",
         "typecheck",
         "vitest",
         "vnode",
-        "vuer",
-        "promptInput"
+        "vuer"
     ],
     "liveServer.settings.port": 5503
 }

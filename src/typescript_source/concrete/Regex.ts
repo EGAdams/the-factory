@@ -14,19 +14,19 @@ import IRawRegexStringPair from "../abstract/IRawRegexStringPair";
  * @class Regex
  */
 class Regex {
-    regexClip: Array<IRawRegexStringPair> = [];
-    tempArray: Array<string> = []; // holds lines of text from regex.txt file
+    regexClip: Array< IRawRegexStringPair > = [];
+    tempArray: Array< string > = []; // holds lines of text from regex.txt file
 
     constructor( populator: IPopulator, regex_source_file: string ) {
         console.log( "constructing Regex object..." );
         if ( populator ) {
-            this.regexClip = new Array<IRawRegexStringPair>();
+            this.regexClip = new Array< IRawRegexStringPair >();
             this.regexClip.length = 0;
             this.tempArray = [];
 
             // regex clip holds an array of objects
             // that define a matchedString, ie: name of
-            // regex, reg expresion, group info, etc...
+            // regex, reg expression, group info, etc...
             this.fillClip( populator.populateArray( regex_source_file ) );
         }
     }
@@ -90,7 +90,7 @@ class Regex {
         }
 
         if ( errors.length == 0 ) {
-            console.log( "Regex Object passsed all tests." );
+            console.log( "Regex Object passed all tests." );
         } else {
             errors.forEach( ( error ) => {
                 console.error( error );
