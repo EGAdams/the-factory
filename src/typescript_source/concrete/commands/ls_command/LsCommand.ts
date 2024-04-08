@@ -1,6 +1,9 @@
 import ICommandObject from "../../../abstract/ICommandObject";
 
 /**  @class LsCommand */
+/**
+ * Represents a command object for the 'ls' command.
+ */
 export default class LsCommand implements ICommandObject {
   execution_type = "execute_and_process";
   id = 0;

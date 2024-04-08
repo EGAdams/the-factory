@@ -12,3 +12,4 @@ class LsOutputProcessor extends OutputProcessor {
     }
 }
 module.exports = LsOutputProcessor; // don't forget this!
+// export default was suggested here if this doesn't work.
