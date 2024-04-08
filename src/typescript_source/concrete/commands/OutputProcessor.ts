@@ -64,6 +64,9 @@ class OutputProcessor {
         // regex needs a populator to fill it's clip.  populators have a populateArray() method.
         const regex = new Regex( populator, "parsingTools/LsRegex.txt" );
 
+        // TODO: Remember that ArrayPopulator only populates arrays of strings.
+        // we may need to rename it to StringArrayPopulator some time soon.
+        
         // regardless of the processor type, we need a fresh array here.
         // any kind of output processor needs example output text for the test.
 

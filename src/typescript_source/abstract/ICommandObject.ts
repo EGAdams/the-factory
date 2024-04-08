@@ -2,9 +2,6 @@ import ICommandFinishedEmitter from "./ICommandFinishedEmitter";
 
 /*
  * interface ICommandObject
- *
- * TODO: try to put a different type into the properties array for a test.
- * not sure why im disabling no-unused-vars here.  eslint bitching about it.
  * 
  */
 interface ICommandObject {
