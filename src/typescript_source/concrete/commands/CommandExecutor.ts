@@ -1,8 +1,8 @@
 import ICommandObject from '/home/adamsl/the-factory/src/typescript_source/abstract/ICommandObject';
 import ICommandFinishedEmitter from "/home/adamsl/the-factory/src/typescript_source/abstract/ICommandFinishedEmitter";
 import { exec } from "child_process";
-import Socket from "./Socket"; // Assuming Socket is default export, adjust based on actual export.
-import ClientFactory from "./ClientFactory"; // Adjust the import path as needed
+import SocketWrapper from '/home/adamsl/the-factory/src/typescript_source/concrete/commands/SocketWrapper';
+import ClientFactory from '/home/adamsl/the-factory/src/typescript_source/concrete/factories/clientFactory/ClientFactory';
 
 class CommandExecutor {
     private commandObject: ICommandObject;
@@ -13,14 +13,14 @@ class CommandExecutor {
         this.commandObject = commandObjectArg;
     }
 
-    public executeCommand(): void {
-        const CommandFinishedEmitter = require(`./${this.commandObject.emitter}`) as typeof ICommandFinishedEmitter;
-        this.io = new CommandFinishedEmitter();
+	public executeCommand(): void {
+		const CommandFinishedEmitter = require(`./${this.commandObject.emitter}`);
+		this.io = new CommandFinishedEmitter();
 
-        console.log("processing command...");
+		console.log('processing command...');
 
-        this._execute();
-    }
+		this._execute();
+	}
 
     private _execute(): void {
         console.log(`executable: ${this.commandObject.executable}`);

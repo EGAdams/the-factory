@@ -1,4 +1,4 @@
-import TheEmitter from '/home/adamsl/the-factory/dist/typescript_source/concrete/TheEmitter'; // Make sure the path and file extension are correct.
+import TheEmitter from '/home/adamsl/the-factory/typescript_source/concrete/TheEmitter'; // Make sure the path and file extension are correct.
 import fs from 'fs';
 import { Client as SSH2Client } from 'ssh2';
 
@@ -75,8 +75,7 @@ class ClientFactory {
             username: clientConfig.username || 'adamsl',
             privateKey: fs.readFileSync('/home/adamsl/.ssh/id_rsa')
         });
-
-        if (debug) console.log("done createClient");
+        console.log("done createClient");
     }
 
     // Similar adjustments for testMe()
