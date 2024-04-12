@@ -1,4 +1,4 @@
-import TheEmitter from '/home/adamsl/the-factory/typescript_source/concrete/TheEmitter'; // Make sure the path and file extension are correct.
+import TheEmitter from "/home/adamsl/the-factory/src/typescript_source/concrete/TheEmitter";
 import fs from 'fs';
 import { Client as SSH2Client } from 'ssh2';
 

@@ -1,6 +1,6 @@
 import ICommandObject from "../../../abstract/ICommandObject";
 
-/**  @class LsCommand */
+/**  @class LsCommand implements ICommandObject */
 /**
  * Represents a command object for the 'ls' command.
  */
