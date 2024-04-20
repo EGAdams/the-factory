@@ -3,19 +3,34 @@ import ICommandFinishedEmitter from "/home/adamsl/the-factory/src/typescript_sou
 import { exec } from "child_process";
 import SocketWrapper from './SocketWrapper';
 import ClientFactory from '../factories/clientFactory/ClientFactory';
+import EmitterSocket from '../EmitterSocket';
+// import EmitterSocket from '../EmitterSocket';
 
 class CommandExecutor {
     private commandObject: ICommandObject;
-	private io: ICommandFinishedEmitter = new SocketWrapper();
+	private io: ICommandFinishedEmitter; // = new SocketWrapper();
     private clients: { [key: string]: any } = {};
 
-    constructor( commandObjectArg: ICommandObject ) {
-        this.commandObject = commandObjectArg;
-    }
-
+    constructor(commandObjectArg: ICommandObject) {
+		this.commandObject = commandObjectArg;
+		let path_to_io_emitter = "/home/adamsl/the-factory/dist/typescript_source/concrete/";
+		console.log(`path_to_io_emitter: ${path_to_io_emitter}${this.commandObject.emitter}.js`);
+		
+		// Dynamically require the emitter module
+		const CommandFinishedEmitterModule = require(`${path_to_io_emitter}${this.commandObject.emitter}`);
+		
+		// Assuming the emitter module exports a class or a factory function that needs to be instantiated.
+		// If the emitter is a class:
+		this.io = new CommandFinishedEmitterModule.default();
+	
+		// If the emitter is a factory function, you might do:
+		// this.io = CommandFinishedEmitterModule.createInstance();
+		
+		// Additional setup or initialization could be placed here if necessary
+	}
+	
 	public executeCommand(): void {
-		const CommandFinishedEmitter = require(`./${this.commandObject.emitter}`);
-		this.io = new CommandFinishedEmitter();
+		
 
 		console.log('processing command...');
 

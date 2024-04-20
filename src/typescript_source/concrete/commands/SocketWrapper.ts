@@ -9,7 +9,7 @@ class SocketWrapper {
   constructor() {
     this.socket = io( "http://localhost:3000" );
     if ( this.socket ) {
-      console.log("socket constructed.");
+      console.log("socket constructed inside SocketWrapper.");
     }
   }
 
