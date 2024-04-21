@@ -1,5 +1,5 @@
-import ICommandFinishedEmitter from '../abstract/ICommandFinishedEmitter';
-import ICommandObject from '../abstract/ICommandObject';
+import ICommandFinishedEmitter from '../../../abstract/ICommandFinishedEmitter';
+import ICommandObject from '../../../abstract/ICommandObject';
 
 let io = require( "socket.io-client" );
 

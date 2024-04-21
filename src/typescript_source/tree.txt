@@ -1,0 +1,130 @@
+Act as an expert Typescript Debugger
+
+I am getting a 
+
+.
+├── abstract
+│   ├── command_object_src.md
+│   ├── data
+│   │   ├── IApiArgs.ts
+│   │   ├── IDataObject.ts
+│   │   ├── IQueryResultProcessor.ts
+│   │   ├── IQueryRunner.ts
+│   │   └── MysqlEscapeTool.ts
+│   ├── IApiArgs.ts
+│   ├── ICommandFinishedEmitter.ts
+│   ├── ICommandObject.ts
+│   ├── IDatabaseConfig.ts
+│   ├── ILogObject.ts
+│   ├── IMonitoredObjectConfig.ts
+│   ├── IMonitoredObject.ts
+│   ├── IMonitorLedClassObject.ts
+│   ├── IMonitorLedData.ts
+│   ├── INameRegexPair.ts
+│   ├── IObserver.ts
+│   ├── IPopulator.ts
+│   ├── IQueryResultProcessor.ts
+│   ├── IRawRegexStringPair.ts
+│   ├── IRegex.ts
+│   ├── ISourceConfig.ts
+│   ├── ISourceDataConfig.ts
+│   ├── ISourceQueryConfig.ts
+│   ├── ISshConfig.ts
+│   ├── ISubject.ts
+│   └── ITestable.ts
+├── concrete
+│   ├── commands
+│   │   ├── ArrayPopulator.ts
+│   │   ├── CommandExecutor.ts
+│   │   ├── CommandManager.ts
+│   │   ├── delete_html_logs
+│   │   │   ├── clean_but_keep_users.sh
+│   │   │   ├── delete_fcw_html_logs.sh
+│   │   │   ├── DeleteHtmlCommand.ts
+│   │   │   ├── delete_html_logs.sh
+│   │   │   ├── DeleteHtmlOutputProcessor.ts
+│   │   │   ├── DeleteHtmlRegex.txt
+│   │   │   └── test.js
+│   │   ├── get_boa_balance
+│   │   │   ├── GetBalanceCommand.ts
+│   │   │   ├── GetBalanceOutputProcessor.ts
+│   │   │   ├── GetBalanceRegex.txt
+│   │   │   ├── get_boa_balance.sh
+│   │   │   └── test.js
+│   │   ├── login_boa
+│   │   │   ├── BoaLoginCommand.ts
+│   │   │   ├── BoaLoginOutputProcessor.ts
+│   │   │   ├── BoaLoginRegex.txt
+│   │   │   └── test.js
+│   │   ├── ls_command
+│   │   │   ├── LsCommand.ts
+│   │   │   ├── LsOutputProcessor.ts
+│   │   │   ├── LsRegex.txt
+│   │   │   └── test.js
+│   │   ├── OutputProcessor.ts
+│   │   ├── reset_fcw_database
+│   │   │   └── reset_fcw_database.sh
+│   │   ├── server_running
+│   │   │   ├── ServerRunningCommand.ts
+│   │   │   ├── ServerRunningOutputProcessor.ts
+│   │   │   ├── ServerRunningRegex.txt
+│   │   │   └── test.js
+│   │   ├── SocketWrapper.ts
+│   │   ├── start_command_manager
+│   │   │   ├── StartCommandManagerOutputProcessor.ts
+│   │   │   └── StartCommandManager.ts
+│   │   ├── stop_server
+│   │   │   └── StopServerCommand.ts
+│   │   └── VanillaCommand.ts
+│   ├── data
+│   │   ├── AxiosPacketFactory.ts
+│   │   ├── DatabaseObserver.ts
+│   │   ├── data_object
+│   │   │   ├── DataObject.ts
+│   │   │   └── test.js
+│   │   ├── DataObjectStatusLed.ts
+│   │   ├── DataPacketVerifier.ts
+│   │   ├── DataSourceFactory.ts
+│   │   ├── JewelryMachineQueryRunner.ts
+│   │   ├── MonitoredObjectsTableInserter.ts
+│   │   ├── MonitoredObjectsTableSelector.ts
+│   │   ├── MonitoredObjectsTableUpdater.ts
+│   │   ├── QueryInsertProcessor.ts
+│   │   └── TableManager.ts
+│   ├── data_object
+│   │   ├── DataObject.ts
+│   │   └── test.js
+│   ├── EmitterSocket.ts
+│   ├── factories
+│   │   ├── bashShellFactory
+│   │   │   ├── BashShellFactory.ts
+│   │   │   └── test.js
+│   │   └── clientFactory
+│   │       ├── ClientFactory.d.ts
+│   │       └── ClientFactory.ts
+│   ├── FetchRunner.ts
+│   ├── FileManager.ts
+│   ├── FreshToolBox.ts
+│   ├── logger
+│   │   ├── LoggerFactory.ts
+│   │   └── types
+│   │       ├── CommanExecutorLogger.ts
+│   │       └── DataObjectLogger.ts
+│   ├── LogObjectContainerSource.ts
+│   ├── LogObjectContainer.ts
+│   ├── LogObjectFactory.ts
+│   ├── LogObjectProcessor.ts
+│   ├── Model.ts
+│   ├── MonitoredObjectConfig.ts
+│   ├── MonitoredObject.ts
+│   ├── MonitorLedClassObject.ts
+│   ├── MonitorLed.ts
+│   ├── Regex.ts
+│   ├── ServerLedData.ts
+│   ├── SourceConfig.ts
+│   ├── SourceData.ts
+│   ├── Stringifier.ts
+│   └── TheEmitter.ts
+└── tree.txt
+
+20 directories, 103 files
