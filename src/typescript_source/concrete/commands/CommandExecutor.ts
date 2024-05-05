@@ -25,20 +25,16 @@ class CommandExecutor {
 	
 		// If the emitter is a factory function, you might do:
 		// this.io = CommandFinishedEmitterModule.createInstance();
-		
-		// Additional setup or initialization could be placed here if necessary
 	}
 	
 	public executeCommand(): void {
-		
-
 		console.log('processing command...');
-
 		this._execute();
 	}
 
 	private _execute(): void {
 		console.log(`executable: ${this.commandObject.executable}`);
+        console.log( "this.commandObject.targetMachine: " + this.commandObject.targetMachine );
 		if (this.commandObject.targetMachine === 'thispc') {
 			const executing = `${this.commandObject.executable} ${this.commandObject.args}`;
 			console.log(`executing: ${executing}`);
@@ -55,12 +51,12 @@ class CommandExecutor {
 				this.commandObject.output = [stdout]; // Assuming output is an array of strings
 				console.log('emitting command finished...');
 				this.io.emit('commandFinished', this.commandObject);
+                console.log( this.commandObject.output );
 			});
 		} else {
-			// Execute command on target machine
-			if ( this.commandObject.targetMachine === 'dev' ) {
-				const factory = new ClientFactory( this.commandObject ); // Create an instance of ClientFactory
-				const clientConfig = { name: 'dev', host: '10.170.150.4' };
+			if ( this.commandObject.targetMachine === 'jewelry_machine' ) {             // Execute command on target machine
+				const factory = new ClientFactory( this.commandObject );    // Create an instance of ClientFactory
+				const clientConfig = { name: 'tinman72', host: 'americansjewelry.com' };
 				this.io.on('gotConnection', (conn: any) => {
 					conn.shell((err: Error, stream: any) => {
 						if (err) throw err;
