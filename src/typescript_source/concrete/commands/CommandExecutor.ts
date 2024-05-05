@@ -1,39 +1,45 @@
 import ICommandObject from '/home/adamsl/the-factory/src/typescript_source/abstract/ICommandObject';
-import ICommandFinishedEmitter from "/home/adamsl/the-factory/src/typescript_source/abstract/ICommandFinishedEmitter";
-import { exec } from "child_process";
+import ICommandFinishedEmitter from '/home/adamsl/the-factory/src/typescript_source/abstract/ICommandFinishedEmitter';
+import { exec } from 'child_process';
 import SocketWrapper from './SocketWrapper';
 import ClientFactory from '../factories/clientFactory/ClientFactory';
 import EmitterSocket from '../EmitterSocket';
 // import EmitterSocket from '../EmitterSocket';
 
+/**
+ * The `CommandExecutor` class is responsible for executing commands on a target machine, either the local machine or a remote machine.
+ * It takes an `ICommandObject` as input, which contains information about the command to be executed, such as the executable, arguments, and the target machine.
+ * The class uses the `ICommandFinishedEmitter` interface to emit events when the command has finished executing.
+ * It also manages a collection of client connections to remote machines, which are used to execute commands on those machines.
+ */
 class CommandExecutor {
-    private commandObject: ICommandObject;
+	private commandObject: ICommandObject;
 	private io: ICommandFinishedEmitter; // = new SocketWrapper();
-    private clients: { [key: string]: any } = {};
+	private clients: { [key: string]: any } = {};
 
-    constructor(commandObjectArg: ICommandObject) {
+	constructor(commandObjectArg: ICommandObject) {
 		this.commandObject = commandObjectArg;
-		let path_to_io_emitter = "/home/adamsl/the-factory/dist/typescript_source/concrete/";
-		console.log(`path_to_io_emitter: ${path_to_io_emitter}${this.commandObject.emitter}.js`);
-		
+		let path_to_io_emitter =
+			'/home/adamsl/the-factory/dist/typescript_source/concrete/';
+		console.log(
+			`path_to_io_emitter: ${path_to_io_emitter}${this.commandObject.emitter}.js`,
+		);
+
 		// Dynamically require the emitter module
 		const CommandFinishedEmitterModule = require(`${path_to_io_emitter}${this.commandObject.emitter}`);
-		
+
 		// Assuming the emitter module exports a class or a factory function that needs to be instantiated.
 		// If the emitter is a class:
 		this.io = new CommandFinishedEmitterModule.default();
-	
+
 		// If the emitter is a factory function, you might do:
 		// this.io = CommandFinishedEmitterModule.createInstance();
-		
+
 		// Additional setup or initialization could be placed here if necessary
 	}
-	
+
 	public executeCommand(): void {
-		
-
 		console.log('processing command...');
-
 		this._execute();
 	}
 
@@ -58,8 +64,8 @@ class CommandExecutor {
 			});
 		} else {
 			// Execute command on target machine
-			if ( this.commandObject.targetMachine === 'dev' ) {
-				const factory = new ClientFactory( this.commandObject ); // Create an instance of ClientFactory
+			if (this.commandObject.targetMachine === 'dev') {
+				const factory = new ClientFactory(this.commandObject); // Create an instance of ClientFactory
 				const clientConfig = { name: 'dev', host: '10.170.150.4' };
 				this.io.on('gotConnection', (conn: any) => {
 					conn.shell((err: Error, stream: any) => {
@@ -103,9 +109,9 @@ class CommandExecutor {
 		}
 	}
 
-    public testMe(): void {
-        // Test function implementation
-    }
+	public testMe(): void {
+		// Test function implementation
+	}
 }
 
 export default CommandExecutor;

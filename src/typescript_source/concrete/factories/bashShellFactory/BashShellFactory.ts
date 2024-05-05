@@ -45,7 +45,7 @@ class BashShellFactory {
             host: "americansjewelry.com",
             password: "",
             username: 'tinman72',
-            privateKey: require( 'fs' ).readFileSync( '/home/adamsl/.ssh/id_rsa_aj' )
+            privateKey: require( 'fs' ).readFileSync( '/home/adamsl/.ssh/id_rsa' )
         });
     }
 }

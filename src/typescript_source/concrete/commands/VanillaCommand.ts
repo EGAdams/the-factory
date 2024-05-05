@@ -5,7 +5,7 @@ class VanillaCommand implements ICommandObject {
   id = 0;
   command_stringified = "";
   command_name = "";
-  properties = new Array<ICommandObject>();
+  children = new Array<ICommandObject>();
   processedOutput: unknown;
   executable = "";
   args = "";
