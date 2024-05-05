@@ -73,7 +73,7 @@ class ClientFactory {
         }).connect({
             host: clientConfig.host,
             username: clientConfig.username || 'adamsl',
-            privateKey: fs.readFileSync('/home/adamsl/.ssh/id_rsa')
+            privateKey: fs.readFileSync('/home/adamsl/.ssh/id_rsa_aj')
         });
         console.log("done createClient");
     }
